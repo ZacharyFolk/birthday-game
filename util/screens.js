@@ -5,16 +5,25 @@ import say from "./speak.js";
 import matrix from "./../commands/matrix/index.mjs"
 import {tada} from "../sound/index.js"
 import {result} from "./../commands/brogue/index.mjs"
+import {initialize, welcome} from "./../textblocks/index.mjs"
 const USER = "admin";
 const PW = "admin";
 
 /** Boot screen */
 async function boot() {
 	clear();
+	await type (initialize)
+	await type (
+		welcome
+	)
 
-	 await parse("brogue");
 
-	 console.log(result);
+
+
+
+
+	// await parse("brogue");
+	// console.log(result);
 	 //matrix();
 	// tada();
 
