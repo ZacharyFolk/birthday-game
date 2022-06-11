@@ -7,6 +7,7 @@ import pause from "./pause.js";
 async function on() {
 	click();
 	await power();
+	document.getElementById("switch").blur(); // get focus off power button to avoid accidental press with keyboard
 	boot();
 }
 
@@ -16,6 +17,7 @@ function off() {
 	clear();
 	stopSpeaking();
 	power(false);
+
 	// this is :poop: but not sure how to kill the async functions that are still running
 	location.reload();
 }
