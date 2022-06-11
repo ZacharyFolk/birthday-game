@@ -1,5 +1,6 @@
 let buttonSound = new Audio("./sound/button.mp3");
 let clickSound = new Audio("./sound/click.mp3");
+let tadaSound = new Audio("./sound/tada.mp3");
 
 let keys = [
 	new Audio("./sound/key1.mp3"),
@@ -15,10 +16,14 @@ function click() {
 	clickSound.play();
 }
 
+function tada() {
+	tadaSound.play();
+}
+
 function typeSound() {
 	let i = Math.floor(Math.random() * keys.length);
 	keys[i].currentTime = 0;
 	keys[i].play();
 }
 
-export { button, click, typeSound };
+export { button, click, tada, typeSound };

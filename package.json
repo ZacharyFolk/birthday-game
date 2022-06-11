@@ -10,6 +10,7 @@
 	"author": "Edwin Keijl",
 	"license": "MIT",
 	"devDependencies": {
+		"easter-egg-collection": "^1.4.56",
 		"serve": "^11.2.0"
 	},
 	"dependencies": {

@@ -2,7 +2,9 @@ import { parse, type, prompt, input } from "./io.js";
 import pause from "./pause.js";
 import alert from "./alert.js";
 import say from "./speak.js";
-
+import matrix from "./../commands/matrix/index.mjs"
+import {tada} from "../sound/index.js"
+import {result} from "./../commands/brogue/index.mjs"
 const USER = "admin";
 const PW = "admin";
 
@@ -10,29 +12,76 @@ const PW = "admin";
 async function boot() {
 	clear();
 
-	await type("Welcome to ECMA industries(TM) terminal", {
-		initialWait: 3000
-	});
+	 await parse("brogue");
 
-	await type(["> SET TERMINAL/BOOT", "Loading........................"], {
+	 console.log(result);
+	 //matrix();
+	// tada();
+
+	// var x = await parse("fallout");
+
+	await checkpoint_1();
+	// await type("Welcome to the birth recognition and fun enhancement simulator", {
+	// 	initialWait: 3000
+	// });
+	// checkpoint(2);
+
+	await type([
+		"                            0   0",
+		"                            |   |",
+		"                        ____|___|____",
+		"                     0  |~ ~ ~ ~ ~ ~|   0",
+		"                     |  |           |   |",
+		"                  ___|__|___________|___|__",
+		"                  |()()()()()()()()()()()(|",
+		"              0   |       H a p p y       |   0",
+		"              |   |()()()()()()()()()()())|   |",
+		"             _|___|_______________________|___|__",
+		"             |***********************************|",
+		"             |                                   |",
+		"             |         B i r t h d a y! ! !      |",
+		"             | ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ |",
+		"             |___________________________________|"
+		], {
+			wait: 0
+		});
+
+
+
+	
+	 await type(["> SET TERMINAL/BOOT", "Loading........................"], {
 		lineWait: 1000
 	});
-	await type(
-		[
-			".....",
-			"Please wait........",
-			"..........",
-			"...",
-			".",
-			".",
-			".",
-			".",
-			"."
-		],
-		{ lineWait: 250 }
-	);
 
-	await type(["OK.", " "]);
+	// await type(
+	// 	[
+	// 		".....",
+	// 		"Please wait........",
+	// 		"..........",
+	// 		"...",
+	// 		".",
+	// 		".", 
+	// 		".",
+	// 		".",
+	// 		"."
+	// 	],
+	// 	{ lineWait: 250 }
+	// );
+	// await type(
+	// 	[
+	// 		".....",
+	// 		"Please wait........",
+	// 		"..........",
+	// 		"...",
+	// 		".",
+	// 		".",
+	// 		".",
+	// 		".",
+	// 		"."
+	// 	],
+	// 	{ lineWait: 250 }
+	// );
+	// await type(["OK.", " "]);
 
 	await type(["> SET TERMINAL/LOGON", "USER AUTHENTICATION CHECK"], {
 		lineWait: 1000,
@@ -41,6 +90,16 @@ async function boot() {
 
 	await pause();
 	return login();
+}
+
+async function checkpoint(num){
+	document.cookie = `stage=${num}; path=/; max-age=${60 * 60 * 24 * 14};`;
+}
+
+async function checkpoint_1(){
+	await type("Welcome to the birth recognition and fun enhancement simulator", {
+		initialWait: 3000
+	});
 }
 
 /** Login screen */

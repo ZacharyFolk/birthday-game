@@ -22,7 +22,9 @@ function say(text, pitch = 1, rate = 1) {
 }
 
 function stopSpeaking() {
+	console.log('stop talking');
 	if (synth) {
+		console.log('synth');
 		synth.pause();
 		synth.cancel();
 	}

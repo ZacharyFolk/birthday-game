@@ -184,7 +184,8 @@ class Pedro {
 		if (path.length === 1) {
       this.game.engine.lock();
       await this.game.alert("Oh dear, you died!");
-			this.game.quit();
+	  this.game.restart();
+			// this.game.quit();
 		}
 		// Only move half the time
 		else if (Math.random() > 0.5) {
@@ -239,6 +240,9 @@ class Game {
   
   async alert(text) {
     return await this.settings.onAlert(text);
+  }
+  restart() {
+	  this.settings.onRestart();
   }
 
 	quit() {
@@ -321,10 +325,10 @@ class Game {
 			}
 		}
 
-		this.display.draw(cx - topLeftX, cy - topLeftY, "B", "yellow");
+		this.display.draw(cx - topLeftX, cy - topLeftY, "😎", "yellow");
 
 		let [px, py] = this.pedro.coords;
-		this.display.draw(px - topLeftX, py - topLeftY, "P", "red");
+		this.display.draw(px - topLeftX, py - topLeftY, "🐈", "red");
 	}
 
 	_generateBoxes(freeCells) {

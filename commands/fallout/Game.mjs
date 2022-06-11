@@ -257,6 +257,7 @@ Game.prototype.updateLives = async function() {
 Game.prototype.quit = function(win) {   
     this.container.remove();
     this.onQuit(win);
+	return 'neato';
 }
 
 // If pw is correct, clean up the screen, otherwise call error function

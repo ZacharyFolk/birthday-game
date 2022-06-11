@@ -9,12 +9,13 @@ import Game from './game.mjs';
 
 const output = [
 	"Loading...",
-	"   ",
-	"Textures......................... OK",
-	"Character models................. OK",
-	"Generating dungeon............... OK"
+	// "   ",
+	// "Textures......................... OK",
+	// "Character models................. OK",
+	// "Generating dungeon............... OK"
 ];
 
+var result = 'something';
 async function brogue() {
 	clear();
 	say("BROGUE", 0.5, 0.8);
@@ -26,10 +27,10 @@ async function brogue() {
 		await waitForKey();
 		logoScreen.remove();
 
-		// INTRO
-		let introScreen = await showTemplateScreen("intro");
-		await waitForKey();
-		introScreen.remove();
+		// // INTRO
+		// let introScreen = await showTemplateScreen("intro");
+		// await waitForKey();
+		// introScreen.remove();
 
 		// Main game screen
 		let gameScreen = getScreen("rogue");
@@ -51,6 +52,11 @@ async function brogue() {
 			width: 10,
 			height: 10,
 			forceSquareRatio: true, // display is buggy without this?
+			onRestart: () => {
+				gameScreen.remove();
+				result = 'loser';
+				resolve();
+			},
 			onQuit: () => {
 				gameScreen.remove();
 				resolve();
@@ -74,4 +80,4 @@ async function brogue() {
 const templates = ["brogue"];
 
 export default brogue;
-export { output, templates };
+export { result, output, templates };

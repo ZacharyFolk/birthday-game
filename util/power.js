@@ -1,5 +1,5 @@
 import { click } from "../sound/index.js";
-import { boot } from "./screens.js";
+import { boot, clear } from "./screens.js";
 import { stopSpeaking } from "./speak.js";
 import pause from "./pause.js";
 
@@ -13,8 +13,11 @@ async function on() {
 /** Turn off the terminal */
 function off() {
 	click();
+	clear();
 	stopSpeaking();
 	power(false);
+	// this is :poop: but not sure how to kill the async functions that are still running
+	location.reload();
 }
 
 async function power(on = true) {
