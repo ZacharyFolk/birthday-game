@@ -4,22 +4,18 @@ import alert from "./alert.js";
 import say from "./speak.js";
 import matrix from "./../commands/matrix/index.mjs"
 import {tada} from "../sound/index.js"
-import {result} from "./../commands/brogue/index.mjs"
-import {initialize, welcome} from "./../textblocks/index.mjs"
+// import {result} from "./../commands/brogue/index.mjs"
+import {initialize, welcome, cake } from "./../textblocks/index.mjs"
 const USER = "admin";
 const PW = "admin";
 
 /** Boot screen */
 async function boot() {
 	clear();
-	await type (initialize)
-	await type (
-		welcome
-	)
-
-
-
-
+	await parse("phunter");
+	
+	// await type (initialize)
+	// await type (welcome)
 
 
 	// await parse("brogue");
@@ -35,23 +31,7 @@ async function boot() {
 	// });
 	// checkpoint(2);
 
-	await type([
-		"                            0   0",
-		"                            |   |",
-		"                        ____|___|____",
-		"                     0  |~ ~ ~ ~ ~ ~|   0",
-		"                     |  |           |   |",
-		"                  ___|__|___________|___|__",
-		"                  |()()()()()()()()()()()(|",
-		"              0   |       H a p p y       |   0",
-		"              |   |()()()()()()()()()()())|   |",
-		"             _|___|_______________________|___|__",
-		"             |***********************************|",
-		"             |                                   |",
-		"             |         B i r t h d a y! ! !      |",
-		"             | ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ |",
-		"             |___________________________________|"
-		], {
+	await type(cake, {
 			wait: 0
 		});
 
@@ -122,6 +102,7 @@ async function login() {
 		say("AUTHENTICATION SUCCESSFUL");
 		await alert("AUTHENTICATION SUCCESSFUL");
 		clear();
+		// instead retrun main next section
 		return main();
 	} else {
 		await type([

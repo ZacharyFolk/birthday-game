@@ -6,7 +6,12 @@ const nope = () => {
 		"Nope",
 		"Nada",
 		"Bogus",
-		"Keep looking!"
+		"It is a crusty pizza",
+		"Lame",
+		"Keep looking!",
+		"Pbhtttttt",
+		"Ugh how many boxes are there?",
+		"&*#!*(%)#!!"
 	];
 
 	return answers[Math.floor(Math.random() * answers.length)];
@@ -51,7 +56,7 @@ class Player {
 		this._y = y;
 		this.game = game;
 
-		this.game.message("Find the pizza, Bro!");
+		this.game.message("Find the present!");
 
 		document
 			.querySelector(".up")
@@ -184,7 +189,7 @@ class Pedro {
 		if (path.length === 1) {
       this.game.engine.lock();
       await this.game.alert("Oh dear, you died!");
-	  this.game.restart();
+	  this.game.lose();
 			// this.game.quit();
 		}
 		// Only move half the time
@@ -241,8 +246,8 @@ class Game {
   async alert(text) {
     return await this.settings.onAlert(text);
   }
-  restart() {
-	  this.settings.onRestart();
+  lose() {
+	  this.settings.onLose();
   }
 
 	quit() {

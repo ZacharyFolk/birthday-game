@@ -4,21 +4,28 @@ import { type, waitForKey } from "../../util/io.js";
 import say from "../../util/speak.js";
 import alert from "../../util/alert.js";
 import pause from "../../util/pause.js";
-
 import Game from './game.mjs';
-
+const eightbitsurf = new Audio("./sound/8-bit-surf.mp3");
+const losesong = new Audio("./sound/jingle-lose.wav");
 const output = [
 	"Loading...",
-	// "   ",
-	// "Textures......................... OK",
-	// "Character models................. OK",
-	// "Generating dungeon............... OK"
+	"   ",
+	"Textures......................... OK",
+	"Character models................. OK",
+	"Generating random map............ OK",
+	"Making a little tune............. OK",
+	"Enhancing graphics............... 👌",
+	"Making a sandwich................ OK",
+	"   ",
+	"   ",
+	"   "
 ];
 
-var result = 'something';
-async function brogue() {
+var result = '';
+async function phunter() {
 	clear();
-	say("BROGUE", 0.5, 0.8);
+	say("PRESENT HUNTER", 0.5, 0.8);
+	eightbitsurf.play();
 	return new Promise(async resolve => {
 		// LOGO
 		let logoScreen = await showTemplateScreen("logo");
@@ -28,10 +35,11 @@ async function brogue() {
 		logoScreen.remove();
 
 		// // INTRO
-		// let introScreen = await showTemplateScreen("intro");
-		// await waitForKey();
-		// introScreen.remove();
+		let introScreen = await showTemplateScreen("intro");
+		await waitForKey();
+		introScreen.remove();
 
+		
 		// Main game screen
 		let gameScreen = getScreen("rogue");
 
@@ -52,9 +60,15 @@ async function brogue() {
 			width: 10,
 			height: 10,
 			forceSquareRatio: true, // display is buggy without this?
-			onRestart: () => {
+			onLose: () => {
 				gameScreen.remove();
-				result = 'loser';
+				result = 'lose';
+				losesong.play();
+				resolve();
+			},
+			onWin: () => {
+				gameScreen.remove();
+				result = 'win';
 				resolve();
 			},
 			onQuit: () => {
@@ -74,10 +88,13 @@ async function brogue() {
 		};
 
 		new Game(settings);
+
+		eightbitsurf.pause();
+
 	});
 }
 
-const templates = ["brogue"];
+const templates = ["phunter"];
 
-export default brogue;
+export default phunter;
 export { result, output, templates };
