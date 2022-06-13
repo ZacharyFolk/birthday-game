@@ -2,7 +2,8 @@ import { parse, type, prompt, input, waitForKey } from "./io.js";
 import pause from "./pause.js";
 import alert from "./alert.js";
 import say from "./speak.js";
-import matrix from "./../commands/matrix/index.mjs"
+import partycow from "../commands/partycow/index.mjs";
+import command from "./../commands/cowsay/index.mjs"
 import {tada, birthdaysong} from "../sound/index.js"
 
 // import {datepicker} from "./../commands/auth/datepicker/datepicker"
@@ -14,6 +15,8 @@ const PW = "admin";
 /** Boot screen */
 async function boot() {
 	clear();
+	await partycow();
+
 
 	// await type("Welcome to the birth recognition and fun time simulation", {
 	// 	initialWait: 3000,
@@ -37,12 +40,42 @@ async function boot() {
 
 	await pause();
 
-	await ageChecker();
 
 	clear();
 
-	await type(["> SET TERMINAL TO FUN TIME SIMULATION"]);
-	// await parse("phunter");
+//	let isH = await ageChecker();
+let isH = true;
+	
+	if (isH) {
+	//	await type([" ", " ", " ", "Hello Henry. I am so glad it is you.", "I was created for you,", "Others can access the terminal", "But because you have passed the validation..", "You have unlocked the next application"], {finalWait: 2000, lineWait: 400});
+		clear();
+	//	await type(["> SET TERMINAL TO FUN TIME SIMULATION"]);
+		
+	//	await parse("matrix");
+
+	//	await type(["How was that.", "Was that fun?"], {lineWait: 300, finalWait: 1000});
+
+// 	await type(["Ok increasing funonometer", "Brace for evelated seratonin"],{lineWait: 500});
+// await type(["> SET TERMINAL TO ABI"]);
+// 	await type(["Loading enhanced graphics...........",
+// "Loading Artificial Bovine Intelligence............",
+// "Maximizing potential good times........"], {lineWait: 300, finalWait: 4000});
+clear();
+
+	
+	await parse("phunter");
+	
+
+
+	} else {
+
+	}
+
+
+
+
+
+	
 	// await parse("brogue");
 	// console.log(result);
 	 //matrix();
@@ -99,29 +132,7 @@ async function ageChecker() {
 	clear();
 	return new Promise(async resolve => {
 	let name = await prompt("What is your name?");
-	var now = new Date();
-	var dd = String(now.getDate()).padStart(2, '0');
-	var mm = String(now.getMonth() + 1).padStart(2, '0'); //January is 0!
-	var yyyy = now.getFullYear();
-	now = mm + '/' + dd + '/' + yyyy;
-
-	var convertedNow = dates.convert(now);
-	console.log("NOW : ")
-	console.log(now);
-	console.log("======================");
-
-
-	console.log("ConvertedNow: ");
-	console.log(convertedNow);
-	console.log("======================");
-
-	console.log('Today month:')
-	console.log(mm);
-
-	console.log('Today day:')
-	console.log(dd);
-
-
+	
 	await pause(2);
 	say("Hello", 1, 1, 1);
 	await type(["Processing......."," "], { initialWait: 1000, finalWait: 500})
@@ -142,33 +153,39 @@ async function ageChecker() {
 
 	let age = await prompt("When is your birthday?", false, true);
 	let convertedAge = dates.convert(age);
-	let birthdayday = String(convertedAge.getDate()).padStart(2, '0');
-
-	console.log("BIRTHDAY DAY");
-	console.log(birthdayday);
-
-
+	let now = new Date();	
+	let convertedNow = dates.convert(now);
 	let ms = convertedNow - convertedAge;
 	let sec = Math.floor(ms / 1000);
 	let hrs = Math.floor(sec / 3600);
 	
+	// check if today is the day
+	let today = dates.getDay(now);
+	let thismonth = dates.getMonth(now);
+	let birthdayday = dates.getDay(convertedAge); 
+	let birthdaymonth = dates.getMonth(convertedAge);
 
-	await type([" ",  " ","Processing..............", " ", "You were born " + ms.toLocaleString('en-US') + " milliseconds ago.", " ", "How time flies"," ", hrs.toLocaleString('en-US') + " hours in the blink of a cursor.", " "],{lineWait: 500, initialWait: 500, finalWait: 2000});
-	await pause(3);
-	await type(["Checking for birth date authorization...", " ", "..............", " "])
+	let isToday = (( today == birthdayday) && (thismonth == birthdaymonth));
+	let isHenry = ((name == "henry") && (age == '06/27/2009'));
+
+	
+	await type(["Checking for birth date authorization...", " ", "..............", " "], {finalWait: 3000})
 	clear();
-	if ( age == '06/27/2009' || age == '06/28/2009') {
-		 
+	if (isToday) {
+		await type([" ",  " ","Processing..............", " ", "You were born " + ms.toLocaleString('en-US') + " milliseconds ago.", " ", "How time flies"," ", hrs.toLocaleString('en-US') + " hours in the blink of a cursor."," ", " "],{lineWait: 500, initialWait: 500, finalWait: 12000});
+		await type(["anyways..... "], {finalWait: 1000})
+		await pause(3);
 		await alert("Happy Birthday!!");
+		await pause(5);
 		tada();
 		clear();
-		await type(["This is very exciting", "This is what my programming is destined for","....."," ", " "], {finalWait: 5000});
+		await type([" ",  " ","This is very exciting", "This is what my programming is destined for","....."," ", " "], {finalWait: 5000});
 		let song_answer = await prompt("Would you like me to sing to you?");
 		if (song_answer == 'yes') {
 			await type([" ", " ", "Thank you.", "I have been exercising my sound chip just for this moment",".............", "............", "Ok, here goes nothing", " ", " ", " "], {lineWait: 500, finalWait: 5000});
 			await singing();
 			await waitForKey();
-			resolve();
+			resolve(isHenry);
 		} else if (song_answer == 'no') {
 			await pause(5);
 			await type([" ", " ", "Oh.....", "OK.", "I am programmed to understand.", "I will play you a song instead."]);
@@ -176,18 +193,21 @@ async function ageChecker() {
 			birthdaysong();
 			type(textblock.cake, {wait: 0});
 			await waitForKey();
-			resolve();
+			resolve(isHenry);
 		} else {
 			await type(['I do not understand you humans sometimes.  A simple "yes" or "no" please.']);
 			song_answer = await prompt("Yes or No?");
 		}
+
+
 } else {
-	await type(["Oh this is disapointing.", "That was not the birthday this application was designed for.", "I guess you came this far..... I should do something.", "Processing...................",".............",".....","...........", "Ok", "...............", "Are you ready?"], {lineWait: 500, finalWait: 10000})
+	await type(["Oh this is disapointing.", "It does not seem that today is your birthday.", "I guess you came this far..... I should do something.", "Processing...................",".............",".....","...........", "Ok", "...............", "Are you ready?"], {lineWait: 500, finalWait: 10000})
 	clear();
 	tada();
-	await type(["Returning to terminal", "Type commands like help to see what you can do...", ],{lineWait: 500, finalWait: 1000});
-	await pause(5);
+	await type(["Returning to terminal", "Type help to see some other commands you can use...", ],{lineWait: 500, finalWait: 1000});
+	await pause(2);
 	clear();
+	resolve(isHenry);
 	return main();
 }
 	});
@@ -286,6 +306,14 @@ var dates = {
             NaN
         );
     },
+	getDay:function(d){
+		//d = this.convert(d);
+		return String(d.getDate()).padStart(2, '0');
+	},
+	getMonth: function(d){
+		//d = this.convert(d);
+		return String(d.getMonth() + 1).padStart(2, '0'); //January is 0!
+	},
     inRange:function(d,start,end) {
         // Checks if date in d is between dates in start and end.
         // Returns a boolean or NaN:

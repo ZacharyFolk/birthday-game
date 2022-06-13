@@ -1,0 +1,37 @@
+import command from "../cowsay/index.mjs"
+import pause from "../../util/pause.js";
+import {clear} from "../../util/screens.js"
+async function partycow() {
+    return new Promise(async resolve => {
+    
+    command("Hello I am party cow");
+	await pause(5);
+	clear();
+	command("I hope you are amooosed.");
+	await pause(3);
+	clear();
+	command("Prepare yourself for a most awesome game.")
+	await pause(3);
+	clear();
+	command("Solve it and get clues for something in the real world.")
+	await pause(3);
+	clear();
+	command("And as cool as this talking cow is.")
+	await pause(5);
+	clear();
+	command("I don't want to milk it.")
+	await pause(10);
+	clear();
+	command("So, without further amoo")
+	await pause(3);
+	clear();
+	command("Prepare yourself for PRESENT HUNTER")
+	await pause(6);
+	clear();
+    resolve();
+
+    });
+
+}
+
+export default partycow;
