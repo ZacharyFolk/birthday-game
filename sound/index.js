@@ -4,7 +4,7 @@ let tadaSound = new Audio("./sound/tada.mp3");
 let eightbitsurf = new Audio("./sound/8-bit-surf.mp3");
 let fearcastle = new Audio("./sound/castle-of-fear.mp3");
 let spacey = new Audio("./sound/spacey.mp3");
-
+let bday = new Audio("./sound/hb128.mp3");
 
 let keys = [
 	new Audio("./sound/key1.mp3"),
@@ -24,6 +24,9 @@ function tada() {
 	tadaSound.play();
 }
 
+function birthdaysong(){
+bday.play();
+}
 function phuntermusic(){
 	eightbitsurf.play();
 }
@@ -33,4 +36,4 @@ function typeSound() {
 	keys[i].play();
 }
 
-export { button, click, tada, phuntermusic, typeSound };
+export { button, click, tada, phuntermusic,birthdaysong, typeSound };

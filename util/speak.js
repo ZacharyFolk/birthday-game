@@ -2,7 +2,7 @@ const synth = window.speechSynthesis;
 const voices = synth.getVoices();
 let volume = 0;
 
-function say(text, pitch = 1, rate = 1) {
+function say(text, pitch = 1, rate = 1, volume = 0) {
 	if (volume === 0) return;
 	if (synth.speaking) {
 		synth.pause();

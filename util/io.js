@@ -222,7 +222,7 @@ function moveCaretToEnd(el) {
 }
 
 /** Shows an input field, returns a resolved promise with the typed text on <enter> */
-async function input(pw) {
+async function input(pw,cal) {
 	return new Promise((resolve) => {
 		// This handles all user input
 		const onKeyDown = (event) => {
@@ -294,6 +294,9 @@ async function input(pw) {
 						Array(length).fill("*").join("")
 					);
 				}
+
+
+			
 				moveCaretToEnd(event.target);
 			}
 		};
@@ -304,6 +307,9 @@ async function input(pw) {
 		input.setAttribute("id", "input");
 		if (pw) {
 			input.classList.add("password");
+		}
+		if (cal) {
+			input.classList.add("age");
 		}
 		input.setAttribute("contenteditable", true);
 		input.addEventListener("keydown", onKeyDown);
@@ -379,9 +385,9 @@ function scroll(el = document.querySelector(".terminal")) {
 }
 
 /** Types the given text and asks input */
-async function prompt(text, pw = false) {
+async function prompt(text, pw = false, cal = false) {
 	await type(text);
-	return input(pw);
+	return input(pw, cal);
 }
 
 /** Sets a global event listeners and returns when a key is hit */

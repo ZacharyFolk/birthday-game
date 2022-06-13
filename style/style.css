@@ -587,3 +587,14 @@ input:checked + .slider:before {
 		font-size: 2rem;
 	}
 }
+
+
+/* Age checker */
+span.age[contenteditable] {
+	display: inline-block;
+}
+
+#input.age[contenteditable]:empty::before {
+	content: 'Use format : 01/01/2001';
+	display: inline-block;
+}
