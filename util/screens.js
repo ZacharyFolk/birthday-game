@@ -7,6 +7,7 @@ import partycow from "../commands/partycow/index.mjs"
 import command from "./../commands/cowsay/index.mjs"
 
 
+
 // import {datepicker} from "./../commands/auth/datepicker/datepicker"
 // import {result} from "./../commands/brogue/index.mjs"
 import * as textblock from "./../textblocks/index.mjs"
@@ -16,6 +17,8 @@ const PW = "admin"
 /** Boot screen */
 async function boot() {
 	clear();
+// 	await partycow();
+
 
 
 	// await partycow();
@@ -51,6 +54,7 @@ let isH = await ageChecker();
 	
 	if (isH) {
 	//	await type([" ", " ", " ", "Hello Henry. I am so glad it is you.", "I was created for you,", "others can access the terminal", "But because you have passed the test,", "and proven yourself to be the one and only Henry Folk", "you have unlocked the full rewards"], {finalWait: 2000, lineWait: 400});
+
 		clear();
 	//	await type(["> SET TERMINAL TO FUN TIME SIMULATION"]);
 		
@@ -59,6 +63,7 @@ let isH = await ageChecker();
 	//	await type(["How was that.", "Was that fun?"], {lineWait: 300, finalWait: 1000});
 
 // 	await type(["Ok increasing funonometer", "Brace for evelated seratonin", "This will require some professional expertise", "Time to summon...", "The Party Cow!"],{lineWait: 500});
+
 // await type(["> SET TERMINAL TO ABI"]);
 // 	await type(["Loading enhanced graphics...........",
 // "Loading Artificial Bovine Intelligence............",
@@ -72,6 +77,7 @@ clear();
 
 	} else {
 clear();	await parse("phunter");
+
 
 	}
 
@@ -133,8 +139,6 @@ async function checkpoint_1(){
 /** Age checker */
 
 
-
-
 /** Main input terminal, recursively calls itself */
 async function main() {
 	let command = await input();
@@ -146,7 +150,6 @@ async function main() {
 
 	main();
 }
-
 
 function addClasses(el, ...cls) {
 	let list = [...cls].filter(Boolean);

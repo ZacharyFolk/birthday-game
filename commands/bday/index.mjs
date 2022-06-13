@@ -51,11 +51,10 @@ async function ageChecker() {
 		await type([" ",  " ","Processing..............", " ", "You were born " + ms.toLocaleString('en-US') + " milliseconds ago.", " ", "How time flies"," ", hrs.toLocaleString('en-US') + " hours in the blink of a cursor."," ", " "],{lineWait: 500, initialWait: 500, finalWait: 12000});
 		await type(["anyways..... "], {finalWait: 1000})
 		await pause(3);
+        clear();
         tada();
 		await alert("Happy Birthday!!");
 		await pause(2);
-	
-		clear();
 		await type([" ",  " ","This is very exciting", "This is what my programming is destined for","....."," ", " "], {finalWait: 5000});
 		let song_answer = await prompt("Would you like me to sing to you?");
 		if (song_answer == 'yes') {
@@ -77,7 +76,7 @@ async function ageChecker() {
 
 
 } else {
-	await type(["Oh this is disapointing.", "It does not seem that today is your birthday.", "I guess you came this far.....", "I should do something...", " ". "Processing...................",".............",".....", "Ok", "...............", " ", "Are you ready?"], {lineWait: 500, finalWait: 10000})
+	await type(["Oh this is disapointing.", "It does not seem that today is your birthday.", "I guess you came this far.....", "I should do something...", " ", "Processing...................",".............",".....", "Ok", "...............", " ", "Are you ready?"], {lineWait: 500, finalWait: 10000})
 	clear();
 	tada();
 	await type(["Returning to terminal", "Type help to see some other commands you can use...", ],{lineWait: 500, finalWait: 1000});
@@ -96,6 +95,7 @@ async function singing(name) {
 return new Promise(async resolve => {
 type(textblock.cake, {wait: 0});
 await pause(3);
+await type(' ', { wait: 500});
 say("Happy birthday to you", 1, .1, 1);
 await type(' ', { wait: 500});
 say("Happy birthday to you", 1, .8, 1);
