@@ -9,9 +9,10 @@ import say from "../../util/speak.js";
 import alert from "../../util/alert.js";
 import pause from "../../util/pause.js";
 // import Game from './game.mjs';
-import createBoard from "./game.mjs";
+import Game from "./game.mjs";
 const psykick = new Audio("./sound/psykick.mp3");
 const losesong = new Audio("./sound/jingle-lose.wav");
+
 const output = [
 	// "Loading...",
 	// "   ",
@@ -29,8 +30,8 @@ const output = [
 var result = "";
 async function cagematch() {
 	clear();
-	say("CAGE MATCH!!", 1, 3, 3);
-	//	psykick.play();
+	// say("CAGE MATCH!!", 1, 3, 3);
+	// psykick.play();
 
 	return new Promise(async (resolve) => {
 		// LOGO
@@ -38,10 +39,11 @@ async function cagematch() {
 		// pause(2);
 		// await pause(6.8);
 		// say("CAGE MATCH!!", 1, 3, 3);
-		// await pause(10);
+		// await pause(6);
 
 		// await waitForKey();
 		// logoScreen.remove();
+		// psykick.pause();
 
 		// // INTRO
 		//	let gameScreen = await showTemplateScreen("main_game");
@@ -57,8 +59,13 @@ async function cagematch() {
 		// gameScreen.appendChild(output);
 
 		addTemplate("main_game", gameScreen);
+		const onGameOver = async () => {
+			gameScreen.remove();
+			resolve();
+		};
 
-		createBoard();
+		let game = new Game({ onGameOver });
+		game.start();
 
 		// let body = getComputedStyle(document.body);
 		// let settings = {
