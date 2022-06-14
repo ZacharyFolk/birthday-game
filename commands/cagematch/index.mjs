@@ -9,6 +9,7 @@ import say from "../../util/speak.js";
 import alert from "../../util/alert.js";
 import pause from "../../util/pause.js";
 // import Game from './game.mjs';
+import createBoard from "./game.mjs";
 const psykick = new Audio("./sound/psykick.mp3");
 const losesong = new Audio("./sound/jingle-lose.wav");
 const output = [
@@ -28,24 +29,24 @@ const output = [
 var result = "";
 async function cagematch() {
 	clear();
-	// say("CAGE MATCH!!", 1, 3, 3);
-	// psykick.play();
+	say("CAGE MATCH!!", 1, 3, 3);
+	//	psykick.play();
 
 	return new Promise(async (resolve) => {
 		// LOGO
-		let logoScreen = await showTemplateScreen("logo");
-		pause(2);
-		await pause(6.8);
-		//		say("CAGE MATCH!!", 1, 3, 3);
-		await pause(10);
+		// let logoScreen = await showTemplateScreen("logo");
+		// pause(2);
+		// await pause(6.8);
+		// say("CAGE MATCH!!", 1, 3, 3);
+		// await pause(10);
 
-		await waitForKey();
-		logoScreen.remove();
+		// await waitForKey();
+		// logoScreen.remove();
 
 		// // INTRO
-		let introScreen = await showTemplateScreen("intro");
-		await waitForKey();
-		introScreen.remove();
+		//	let gameScreen = await showTemplateScreen("main_game");
+
+		let gameScreen = getScreen("cards");
 
 		// Main game screen
 		// let gameScreen = getScreen("rogue");
@@ -55,7 +56,9 @@ async function cagematch() {
 		// output.classList.add("output");
 		// gameScreen.appendChild(output);
 
-		// addTemplate("layout", gameScreen);
+		addTemplate("main_game", gameScreen);
+
+		createBoard();
 
 		// let body = getComputedStyle(document.body);
 		// let settings = {
