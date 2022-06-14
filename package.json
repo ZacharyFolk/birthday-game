@@ -1,19 +1,15 @@
 {
-	"name": "crt-terminal-in-css-js",
-	"version": "1.0.0",
-	"description": "Emulating an oldschool CRT terminal  with scanlines, flickering text and all the retro good stuff.\n\nInspired by hackertyper and the hacking minigame from the Fallout game series.\n\nSee the article: \n\nhttps://dev.to/ekeijl/retro-crt-terminal-screen-in-css-js-4afh",
+	"name": "teenomatron2022",
+	"version": "0.0.1",
+	"description": "A project or pure silliness to add a little extra joy to my sons thirteenth birthday. It is all based off this cool terminal project described in this article: \n\nhttps://dev.to/ekeijl/retro-crt-terminal-screen-in-css-js-4afh",
 	"main": "index.html",
 	"scripts": {
-		"start": "serve"
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
-	"author": "Edwin Keijl",
+	"author": "Zachary Folk",
 	"license": "MIT",
-	"devDependencies": {
-		"easter-egg-collection": "^1.4.56",
-		"serve": "^11.2.0"
-	},
 	"dependencies": {
-		"http-server": "^14.1.1"
+		"express": "^4.18.1"
 	}
 }

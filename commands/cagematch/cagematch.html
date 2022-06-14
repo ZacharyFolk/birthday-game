@@ -1,0 +1,238 @@
+<template id="logo">
+	<style>
+		@import url("https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap");
+
+		.jt {
+			position: relative;
+			font-size: 10vmin;
+			font-family: "Staatliches", sans-serif;
+			font-family: "Saira Stencil One", cursive;
+
+			text-transform: uppercase;
+			font-display: swap;
+			/*   text-shadow: 0 0 10px tomato; */
+		}
+
+		.jt__row {
+			display: block;
+			width: 100%;
+			text-align: center;
+		}
+		.jt__row:nth-child(1) {
+			clip-path: polygon(
+				-10% 75%,
+				110% 75%,
+				110% 110%,
+				-10% 110%
+			);
+		}
+		.jt__row:nth-child(2) {
+			clip-path: polygon(
+				-10% 50%,
+				110% 50%,
+				110% 75.3%,
+				-10% 75.3%
+			);
+		}
+		.jt__row:nth-child(3) {
+			clip-path: polygon(
+				-10% 25%,
+				110% 25%,
+				110% 50.3%,
+				-10% 50.3%
+			);
+		}
+		.jt__row:nth-child(4) {
+			clip-path: polygon(
+				-10% 0%,
+				110% 0%,
+				110% 25.3%,
+				-10% 25.3%
+			);
+		}
+
+		.jt__row.jt__row--sibling {
+			position: absolute;
+			top: 0;
+			left: 0;
+			user-select: none;
+		}
+		.jt__text {
+			display: block;
+			transform-origin: bottom left;
+			animation: moveIn 8s 0s cubic-bezier(0.36, 0, 0.06, 1)
+				alternate infinite;
+		}
+		.jt__row:nth-child(1) .jt__text {
+			transform: translateY(-0.1em);
+		}
+		.jt__row:nth-child(2) .jt__text {
+			transform: translateY(-0.3em) scaleY(1.1);
+		}
+		.jt__row:nth-child(3) .jt__text {
+			transform: translateY(-0.5em) scaleY(1.2);
+		}
+		.jt__row:nth-child(4) .jt__text {
+			transform: translateY(-0.7em) scaleY(1.3);
+		}
+		.jt__row:nth-child(5) .jt__text {
+			transform: translateY(-0.9em) scaleY(1.4);
+		}
+		.jt__row:nth-child(6) .jt__text {
+			transform: translateY(-1.1em) scaleY(1.5);
+		}
+
+		@keyframes moveIn {
+			50%,
+			100% {
+				transform: translateY(0em);
+			}
+			0% {
+				opacity: 0;
+				filter: blur(10px);
+			}
+			22% {
+				opacity: 0.8;
+			}
+			23% {
+				opacity: 1;
+			}
+			24% {
+				opacity: 0.5;
+			}
+			25% {
+				opacity: 1;
+			}
+			32% {
+				opacity: 0.9;
+			}
+			33% {
+				opacity: 0.5;
+			}
+			34% {
+				opacity: 0.8;
+			}
+			35% {
+				opacity: 1;
+			}
+			36% {
+				opacity: 0.7;
+			}
+			37% {
+				opacity: 1;
+			}
+			40% {
+				opacity: 0.8;
+			}
+			45% {
+				opacity: 0.6;
+			}
+			50% {
+				opacity: 0.8;
+			}
+			55% {
+				opacity: 0.6;
+			}
+			60% {
+				opacity: 0.8;
+			}
+			65% {
+				opacity: 0.6;
+			}
+			68% {
+				opacity: 0.8;
+			}
+			100% {
+				opacity: 1;
+				filter: blur(0px);
+			}
+		}
+		.delayed-display {
+			animation: delayit 30s;
+			opacity: 0;
+		}
+		@keyframes delayit {
+			0%,
+			50% {
+				opacity: 0;
+			}
+
+			70% {
+				opacity: 1;
+			}
+		}
+		.enter {
+			text-align: center;
+			font-size: 2rem;
+			animation: cursor 1s infinite 2s step-end;
+		}
+		.fullscreen {
+			background: url("./commands/cagematch/images/title-screen.jpg");
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+		.marquee {
+			width: 450px;
+			margin: 0 auto;
+			overflow: hidden;
+			box-sizing: border-box;
+		}
+
+		.marquee span {
+			display: inline-block;
+			width: max-content;
+
+			padding-left: 100%;
+			/* show the marquee just outside the paragraph */
+			will-change: transform;
+			animation: marquee 15s linear infinite;
+		}
+
+		.marquee span:hover {
+			animation-play-state: paused;
+		}
+
+		@keyframes marquee {
+			0% {
+				transform: translate(0, 0);
+			}
+			100% {
+				transform: translate(-100%, 0);
+			}
+		}
+
+		/* Respect user preferences about animations */
+
+		@media (prefers-reduced-motion: reduce) {
+			.marquee span {
+				animation-iteration-count: 1;
+				animation-duration: 0.01;
+				/* instead of animation: none, so an animationend event is 
+     * still available, if previously attached.
+     */
+				width: auto;
+				padding-left: 0;
+			}
+		}
+	</style>
+	<h1 class="jt --debug">
+		<span class="jt__row">
+			<span class="jt__text">Cage Match</span>
+		</span>
+		<span class="jt__row jt__row--sibling" aria-hidden="true">
+			<span class="jt__text">Cage Match</span>
+		</span>
+		<span class="jt__row jt__row--sibling" aria-hidden="true">
+			<span class="jt__text">Cage Match</span>
+		</span>
+		<span class="jt__row jt__row--sibling" aria-hidden="true">
+			<span class="jt__text">Cage Match</span>
+		</span>
+	</h1>
+	<div class="delayed-display">
+		<div class="enter">--- PRESS ENTER ---</div>
+	</div>
+</template>

@@ -11,12 +11,16 @@ import command from "./../commands/cowsay/index.mjs"
 // import {datepicker} from "./../commands/auth/datepicker/datepicker"
 // import {result} from "./../commands/brogue/index.mjs"
 import * as textblock from "./../textblocks/index.mjs"
+import cagematch from "../commands/cagematch/index.mjs"
 const USER = "admin"
 const PW = "admin"
 
 /** Boot screen */
 async function boot() {
 	clear();
+
+
+	await parse("cagematch");
 // 	await partycow();
 
 
