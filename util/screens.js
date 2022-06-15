@@ -16,40 +16,39 @@ const PW = "admin";
 async function boot() {
 	clear();
 
-	await type(textblock.welcome1, {
-		wait: 20,
-		initialWait: 3000,
-		lineWait: 100,
-		finalWait: 3000
-	});
-	await pause(2);
-	await type(textblock.loading, { wait: 0, lineWait: 10 });
-	clear();
+	// await type(textblock.welcome1, {
+	// 	wait: 20,
+	// 	initialWait: 3000,
+	// 	lineWait: 100,
+	// 	finalWait: 3000
+	// });
+	// await pause(2);
+	// await type(textblock.loading, { wait: 0, lineWait: 10 });
+	// clear();
 
-	await type(textblock.welcome2, {
-		wait: 30,
-		initialWait: 1000,
-		lineWait: 500,
-		finalWait: 500
-	});
-	clear();
-	await type(textblock.authintro, {
-		lineWait: 250,
-		wait: 50,
-		initialWait: 3000,
-		finalWait: 4000
-	});
-	await pause(2);
-	clear();
-	await type(textblock.initializeAge, {
-		wait: 30,
-		lineWait: 150,
-		finalWait: 2000
-	});
-	await pause(3);
+	// await type(textblock.welcome2, {
+	// 	wait: 30,
+	// 	initialWait: 1000,
+	// 	lineWait: 500,
+	// 	finalWait: 500
+	// });
+	// clear();
+	// await type(textblock.authintro, {
+	// 	lineWait: 250,
+	// 	wait: 50,
+	// 	initialWait: 3000,
+	// 	finalWait: 4000
+	// });
+	// await pause(2);
+	// clear();
+	// await type(textblock.initializeAge, {
+	// 	wait: 30,
+	// 	lineWait: 150,
+	// 	finalWait: 2000
+	// });
+	// await pause(3);
 
 	let isH = await ageChecker();
-	// let isH = true;
 
 	if (isH) {
 		await type(textblock.itsHenry, {
