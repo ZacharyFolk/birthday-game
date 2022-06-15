@@ -1,147 +1,96 @@
-import { parse, type, prompt, input, waitForKey } from "./io.js"
-import pause from "./pause.js"
-import alert from "./alert.js"
-import say from "./speak.js"
-import ageChecker from "../commands/bday/index.mjs"
-import partycow from "../commands/partycow/index.mjs"
-import command from "./../commands/cowsay/index.mjs"
+import { parse, type, prompt, input, waitForKey } from "./io.js";
+import pause from "./pause.js";
+import alert from "./alert.js";
+import say from "./speak.js";
+import ageChecker from "../commands/bday/index.mjs";
+import partycow from "../commands/partycow/index.mjs";
+import command from "./../commands/cowsay/index.mjs";
 
-
-
-// import {datepicker} from "./../commands/auth/datepicker/datepicker"
 // import {result} from "./../commands/brogue/index.mjs"
-import * as textblock from "./../textblocks/index.mjs"
-import cagematch from "../commands/cagematch/index.mjs"
-const USER = "admin"
-const PW = "admin"
+import * as textblock from "./../textblocks/index.mjs";
+import cagematch from "../commands/cagematch/index.mjs";
+const USER = "admin";
+const PW = "admin";
 
 /** Boot screen */
 async function boot() {
 	clear();
 
-
-	await parse("cagematch");
-// 	await partycow();
-
-
-
-	// await partycow();
-
-
-	// await type("Welcome to the birth recognition and fun time simulation", {
-	// 	initialWait: 3000,
-	// 	finalWait: 3000
-	// });
-	// await pause();
-	// clear(); 
-
-	// await type(["> SET TERMINAL/BOOT", "Loading........................"], {
-	// 	lineWait: 1000
-	// });
-
-	// await type(textblock.loading, { lineWait: 250});
-
-	// await type(["> SET TERMINAL/LOGON", "USER AUTHENTICATION CHECK"], {
-	// 	lineWait: 1000,
-	// 	finalWait: 3000
-	// });
-
-	// await type( textblock.initializeAge);
-
-	await pause();
-
-
+	await type(textblock.welcome1, {
+		wait: 20,
+		initialWait: 3000,
+		lineWait: 100,
+		finalWait: 3000
+	});
+	await pause(2);
+	await type(textblock.loading, { wait: 0, lineWait: 10 });
 	clear();
 
-let isH = await ageChecker();
-// let isH = true;
-	
+	await type(textblock.welcome2, {
+		wait: 30,
+		initialWait: 1000,
+		lineWait: 500,
+		finalWait: 500
+	});
+	clear();
+	await type(textblock.authintro, {
+		lineWait: 250,
+		wait: 50,
+		initialWait: 3000,
+		finalWait: 4000
+	});
+	await pause(2);
+	clear();
+	await type(textblock.initializeAge, {
+		wait: 30,
+		lineWait: 150,
+		finalWait: 2000
+	});
+	await pause(3);
+
+	let isH = await ageChecker();
+	// let isH = true;
+
 	if (isH) {
-	//	await type([" ", " ", " ", "Hello Henry. I am so glad it is you.", "I was created for you,", "others can access the terminal", "But because you have passed the test,", "and proven yourself to be the one and only Henry Folk", "you have unlocked the full rewards"], {finalWait: 2000, lineWait: 400});
+		await type(textblock.itsHenry, {
+			finalWait: 1000,
+			lineWait: 400
+		});
 
 		clear();
-	//	await type(["> SET TERMINAL TO FUN TIME SIMULATION"]);
-		
-	//	await parse("matrix");
+		await type(textblock.funtime, { finalWait: 3000 });
 
-	//	await type(["How was that.", "Was that fun?"], {lineWait: 300, finalWait: 1000});
+		await parse("matrix");
 
-// 	await type(["Ok increasing funonometer", "Brace for evelated seratonin", "This will require some professional expertise", "Time to summon...", "The Party Cow!"],{lineWait: 500});
+		await type(funcheck, { lineWait: 300, finalWait: 1000 });
+		clear();
 
-// await type(["> SET TERMINAL TO ABI"]);
-// 	await type(["Loading enhanced graphics...........",
-// "Loading Artificial Bovine Intelligence............",
-// "Maximizing potential good times........"], {lineWait: 300, finalWait: 4000});
-clear();
+		// await type(textblock.partyCowIntro, { lineWait: 500 });
+		clear();
 
-	
-	await parse("phunter");
-	
+		//await type(textblock.partyCowIntro2, {
+		// 	lineWait: 300,
+		// 	finalWait: 4000
+		// });
+		clear();
+		// await partycow();
 
-
+		// await parse("cagematch");
+		// await parse("phunter");
+		// console.log(result);
 	} else {
-clear();	await parse("phunter");
-
-
+		clear();
+		await parse("phunter");
 	}
 
-
-
-
-
-	
-	// await parse("brogue");
-	// console.log(result);
-	 //matrix();
-	// tada();
-
-	// var x = await parse("fallout");
-
 	// await checkpoint_1();
-
-
-
-
-
-
-	
-	//  await type(["> SET TERMINAL/BOOT", "Loading........................"], {
-	// 	lineWait: 1000
-	// });
-
-	// await type(
-	// 	[
-	// 		".....",
-	// 		"Please wait........",
-	// 		"..........",
-	// 		"...",
-	// 		".",
-	// 		".", 
-	// 		".",
-	// 		".",
-	// 		"."
-	// 	],
-	// 	{ lineWait: 250 }
-	// );
-
-	// await type(["OK.", " "]);
-
-
-	// return login();
 }
 
-async function checkpoint(num){
+async function checkpoint(num) {
 	document.cookie = `stage=${num}; path=/; max-age=${60 * 60 * 24 * 14};`;
 }
 
-async function checkpoint_1(){
-	await type("Welcome to the birth recognition and fun enhancement simulator", {
-		initialWait: 3000
-	});
-}
-
-/** Age checker */
-
+async function checkpoint_1() {}
 
 /** Main input terminal, recursively calls itself */
 async function main() {

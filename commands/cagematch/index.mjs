@@ -4,14 +4,11 @@ import {
 	addTemplate,
 	clear
 } from "../../util/screens.js";
-import { type, waitForKey } from "../../util/io.js";
+import { waitForKey } from "../../util/io.js";
 import say from "../../util/speak.js";
-import alert from "../../util/alert.js";
 import pause from "../../util/pause.js";
-// import Game from './game.mjs';
 import Game from "./game.mjs";
 const psykick = new Audio("./sound/psykick.mp3");
-const losesong = new Audio("./sound/jingle-lose.wav");
 
 const output = [
 	"Loading...",
