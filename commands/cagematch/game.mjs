@@ -1,6 +1,6 @@
 import alert from "../../util/alert.js";
-import say from "../../util/speak.js";
 import { waitForKey } from "../../util/io.js";
+import pause from "../../util/pause.js";
 const matchsound = new Audio(
 	"./sound/16681__littlerobotsoundfactory__8-bit-sound-effects-library/270303__littlerobotsoundfactory__collect-point-01.wav"
 );
@@ -16,6 +16,7 @@ const declaration = new Audio("./sound/cage-declaration.mp3");
 let cardbacksrc = "commands/cagematch/images/cage10.jpg";
 let caged = "commands/cagematch/images/cage6.jpg";
 let winner = "commands/cagematch/images/cage8.jpg";
+let loses = new Audio("./sound/cage-bunny.mp3");
 
 const cardArrayOne = [
 	{
@@ -72,31 +73,42 @@ let cardsChosen = [];
 let cardsChosenId = [];
 let cardsWon = [];
 let badMatch = 0;
-let i = 0;
 
 class Game {
 	constructor({ onGameOver }) {
 		this.onGameOver = onGameOver;
+		this.i = 0;
 	}
+
 	start() {
 		this.dealCards();
+	}
+	async restart() {
+		document.querySelector(".grid").innerHTML = "";
+		loses.play();
+		await pause(2);
+		await alert("Fresh deal");
+		this.i = 0;
+
+		this.start();
 	}
 	async gameOver() {
 		await this.onGameOver();
 	}
 	dealCards() {
+		console.log("What is i " + this.i);
 		let self = this;
 		const grid = document.querySelector(".grid");
 		const card = document.createElement("img");
 		card.setAttribute("src", cardbacksrc);
-		card.setAttribute("data-id", i);
+		card.setAttribute("data-id", self.i);
 		card.addEventListener("click", this.flipCard.bind(this));
 
 		setTimeout(function () {
 			grid.appendChild(card);
 			dealsound.play();
-			i++;
-			if (i < cardArrayOne.length) {
+			self.i++;
+			if (self.i < cardArrayOne.length) {
 				self.dealCards();
 			}
 		}, 200);
@@ -132,14 +144,22 @@ class Game {
 			cards[optionTwoId].setAttribute("src", cardbacksrc);
 			misssound.play();
 			badMatch = badMatch + 1;
-			if (badMatch == 4 || badMatch == 12) {
+			if (badMatch == 3) {
+				alert("Nope");
+				pause(1);
 				boredcage.play();
-			}
-			if (badMatch == 7) {
+			} else if (badMatch == 6) {
+				alert("You only have 3 more attempts!");
+				pause(1);
 				declaration.play();
+			} else if (badMatch == 9) {
+				alert("Sorry you are out of tries");
+				pause(1);
+				this.restart();
+			} else {
+				alert("These are not the same Cage");
+				pause(1);
 			}
-
-			alert("These are not the same Cage");
 		}
 		cardsChosen = [];
 		cardsChosenId = [];
@@ -147,10 +167,14 @@ class Game {
 		if (cardsWon.length === cardArrayOne.length / 2) {
 			cagethanksyou.play();
 			const grid = document.querySelector(".grid");
+			const nickscage = document.createElement("div");
 			const nick = document.createElement("img");
+			nickscage.setAttribute("class", "nickscage");
 			nick.setAttribute("src", winner);
 			grid.innerHTML = "";
-			grid.appendChild(nick);
+			grid.appendChild(nickscage);
+			nickscage.appendChild(nick);
+			alert("Congratulations!!!!");
 			await waitForKey();
 			this.gameOver();
 		}
