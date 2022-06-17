@@ -23,7 +23,7 @@ const output = [
 var result = "";
 async function riddler() {
 	clear();
-	// hobbitMusic.play();
+	hobbitMusic.play();
 	// var timer = setInterval(function () {
 	// 	hobbitMusic.volume = 0.5;
 	// 	clearInterval(timer);
@@ -32,17 +32,19 @@ async function riddler() {
 
 	return new Promise(async (resolve) => {
 		let mainScreen = await showTemplateScreen("cave");
+		await titleScreen();
 
-		await riddleOne();
 		await type([
 			"I am programmed to understand.",
 			"I will play you a song instead."
 		]);
-
+		clear();
+		await riddleOne();
 		//	pause(10);
 		//	await waitForKey();
 	});
 }
+
 async function riddleOne() {
 	let answer1 = await prompt(
 		"Can I ask you a question",
