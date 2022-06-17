@@ -9,12 +9,15 @@ import command from "./../commands/cowsay/index.mjs";
 // import {result} from "./../commands/brogue/index.mjs"
 import * as textblock from "./../textblocks/index.mjs";
 import cagematch from "../commands/cagematch/index.mjs";
+import riddlecave from "../commands/riddler/index.mjs";
 const USER = "admin";
 const PW = "admin";
 
 /** Boot screen */
 async function boot() {
 	clear();
+
+	await parse("riddler");
 
 	// await type(textblock.welcome1, {
 	// 	wait: 20,

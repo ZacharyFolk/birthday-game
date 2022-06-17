@@ -79,13 +79,14 @@ function getChar(char) {
  * @param {Boolean} options.clearContainer Clear container before typing
  * @param {Element} container DOM element where text will be typed
  */
-async function type(
-	text,
-	options = {},
-	container = document.querySelector(".terminal")
-) {
+async function type(text, options = {}, container) {
 	if (!text) return Promise.resolve();
 
+	if (!container) {
+		container = document.querySelector(".terminal");
+	} else {
+		container = document.querySelector(container);
+	}
 	let {
 		wait = 30,
 		initialWait = 1000,
@@ -222,7 +223,10 @@ function moveCaretToEnd(el) {
 }
 
 /** Shows an input field, returns a resolved promise with the typed text on <enter> */
-async function input(pw,cal) {
+async function input(pw, cal, target) {
+	if (!target) {
+		target = ".terminal";
+	}
 	return new Promise((resolve) => {
 		// This handles all user input
 		const onKeyDown = (event) => {
@@ -295,14 +299,13 @@ async function input(pw,cal) {
 					);
 				}
 
-
-			
 				moveCaretToEnd(event.target);
 			}
 		};
 
 		// Add input to terminal
-		let terminal = document.querySelector(".terminal");
+
+		let terminal = document.querySelector(target);
 		let input = document.createElement("span");
 		input.setAttribute("id", "input");
 		if (pw) {
@@ -315,6 +318,10 @@ async function input(pw,cal) {
 		input.addEventListener("keydown", onKeyDown);
 		terminal.appendChild(input);
 		input.focus();
+
+		console.log("looks like we made it");
+		console.log(input);
+		console.log(terminal);
 	});
 }
 
@@ -385,9 +392,11 @@ function scroll(el = document.querySelector(".terminal")) {
 }
 
 /** Types the given text and asks input */
-async function prompt(text, pw = false, cal = false) {
-	await type(text);
-	return input(pw, cal);
+async function prompt(text, pw = false, cal = false, target) {
+	await type(text, {}, target);
+	console.log("prompt target");
+	console.log(target);
+	return input(pw, cal, target);
 }
 
 /** Sets a global event listeners and returns when a key is hit */

@@ -1,11 +1,15 @@
-
-import { getScreen, showTemplateScreen, addTemplate, clear } from "../../util/screens.js";
+import {
+	getScreen,
+	showTemplateScreen,
+	addTemplate,
+	clear
+} from "../../util/screens.js";
 import { type, waitForKey } from "../../util/io.js";
 import say from "../../util/speak.js";
 import alert from "../../util/alert.js";
 import pause from "../../util/pause.js";
 
-import Game from './game.mjs';
+import Game from "./game.mjs";
 
 const output = [
 	"Loading...",
@@ -18,7 +22,7 @@ const output = [
 async function brogue() {
 	clear();
 	say("BROGUE", 0.5, 0.8);
-	return new Promise(async resolve => {
+	return new Promise(async (resolve) => {
 		// LOGO
 		let logoScreen = await showTemplateScreen("logo");
 		pause(2);
@@ -40,7 +44,7 @@ async function brogue() {
 		gameScreen.appendChild(output);
 
 		addTemplate("layout", gameScreen);
-		
+
 		let body = getComputedStyle(document.body);
 		let settings = {
 			container: document.querySelector(".layout .mid"),

@@ -1,0 +1,497 @@
+<template id="cave">
+	<style>
+		@import url("https://fonts.googleapis.com/css2?family=Joan&display=swap");
+
+		.cave {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+			background-color: #000;
+			transform: scale(1.1);
+			/* animation: cave 1420s linear infinite; */
+		}
+		.cave-container {
+			overflow: hidden;
+		}
+
+		.cave-background-1 {
+			position: absolute;
+			top: 0px;
+			left: 0;
+
+			background-size: auto 100%;
+			animation: bg1 940s linear infinite;
+			height: 460px;
+			width: 1636px; /* double actual width */
+		}
+		.cave-background-2 {
+			position: absolute;
+			top: 0px;
+			left: 0;
+
+			background-repeat: repeat-x;
+
+			background-size: auto 100%;
+			animation: bg1 610s linear infinite;
+			height: 460px;
+			width: 1636px; /* double actual width */
+		}
+		.cave-ceiling {
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-repeat: repeat-x;
+			background-size: auto 100%;
+			animation: c1 610s linear infinite;
+			height: 110px;
+			width: 2560px;
+		}
+
+		.pillars-4 {
+			display: flex;
+			position: absolute;
+			justify-content: space-between;
+			top: 0;
+			left: 0;
+			width: 1636px;
+			animation: p1 580s linear infinite;
+		}
+		.pillars-4 div {
+			background-size: auto 100%;
+			transform: scale(1.8);
+		}
+		.pillars-4 .p1 {
+			height: 360px;
+			width: 91px;
+		}
+		.pillars-4 .p2 {
+			height: 325px;
+			width: 144px;
+		}
+		.pillars-4 .p3 {
+			height: 325px;
+			width: 143px;
+		}
+		.pillars-4 .p4 {
+			height: 360px;
+			width: 104px;
+		}
+		.pillars-4 .p5 {
+			height: 341px;
+			width: 106px;
+		}
+		.cave-stalactites-1 {
+			display: flex;
+			position: absolute;
+			justify-content: space-between;
+			top: 20px;
+			left: 0;
+			width: 2636px;
+			animation: s1 510s linear infinite;
+		}
+		.cave-stalactites-1 div {
+			transform: scale(2.5);
+		}
+		.cave-stalactites-1 .s1 {
+			height: 82px;
+			width: 78px;
+		}
+		.cave-stalactites-1 .s2 {
+			height: 58px;
+			width: 44px;
+		}
+		.cave-stalactites-1 .s3 {
+			height: 39px;
+			width: 29px;
+		}
+		.cave-stalactites-1 .s4 {
+			height: 107px;
+			width: 86px;
+		}
+		.cave-stalactites-1 .s5 {
+			height: 48px;
+			width: 32px;
+		}
+		.cave-stalactites-1 .s6 {
+			height: 41px;
+			width: 116px;
+		}
+		.cave-stalactites-1 .s7 {
+			height: 67px;
+			width: 36px;
+		}
+		.cave-stalactites-1 .s8 {
+			height: 95px;
+			width: 93px;
+		}
+		.cave-stalactites-2 {
+			display: flex;
+			position: absolute;
+			justify-content: space-between;
+			top: 20px;
+			left: 380px;
+			width: 1000px;
+			animation: s1 650s linear infinite;
+		}
+		.cave-stalactites-2 div {
+			transform: scale(1.8);
+		}
+		.cave-stalactites-2 .big-s1 {
+			width: 229px;
+			height: 127px;
+		}
+		.cave-stalactites-2 .big-s2 {
+			width: 92px;
+			height: 115px;
+		}
+		.stalagmite-container {
+			position: absolute;
+			bottom: 20px;
+			left: 460px;
+			width: 1000px;
+			display: flex;
+			animation: r1 590s linear infinite;
+		}
+		.big-stalagmite {
+			margin-left: 350px;
+			width: 140px;
+			height: 106px;
+			transform: scale(1.5);
+		}
+
+		.cave-rocks-1 {
+			display: flex;
+			position: absolute;
+			justify-content: space-between;
+			bottom: 20px;
+			left: 0;
+			width: 3000px;
+			animation: r1 580s linear infinite;
+			transform: scale(1.1);
+		}
+		.cave-rocks-1 div {
+			transform: scale(2);
+		}
+		.cave-rocks-2 {
+			display: flex;
+			position: absolute;
+			justify-content: space-between;
+			bottom: 30px;
+			left: 0;
+			width: 880px;
+			animation: r2 420s linear infinite;
+		}
+		.cave-rocks-2 div {
+			transform: scale(2.2);
+		}
+		.cave-rocks-2 .r1 {
+			width: 81px;
+			height: 70px;
+		}
+		.cave-rocks-2 .r2 {
+			width: 89px;
+			height: 60px;
+		}
+		.cave-rocks-1 .r1 {
+			width: 140px;
+			height: 64px;
+		}
+		.cave-rocks-1 .r2 {
+			width: 52px;
+			height: 49px;
+		}
+		.cave-rocks-1 .r3 {
+			width: 40px;
+			height: 34px;
+		}
+		.cave-rocks-1 .r4 {
+			width: 93px;
+			height: 60px;
+		}
+		.cave-rocks-1 .r5 {
+			width: 67px;
+			height: 28px;
+		}
+		.cave-rocks-2 .r6 {
+			width: 81px;
+			height: 70px;
+		}
+		.cave-rocks-2 .r7 {
+			width: 89px;
+			height: 60px;
+		}
+		.cave-floor-1 {
+			position: absolute;
+			bottom: 20px;
+			left: 0;
+			background-repeat: repeat-x;
+			background-size: auto 100%;
+			animation: c1 1020s linear infinite;
+			height: 32px;
+			width: 2560px;
+		}
+		.cave-floor-2 {
+			position: absolute;
+			bottom: 50px;
+			left: 0;
+			background-repeat: repeat-x;
+			background-size: auto 100%;
+			animation: c1 820s linear infinite;
+			height: 38px;
+			width: 2560px;
+		}
+		/* IMAGES */
+
+		.cave-background-1 {
+			background: url("./commands/riddler/images/caves/Basic_Cave/006_background.png"),
+				url("./commands/riddler/images/caves/Basic_Cave/007_background.png"),
+				url("./commands/riddler/images/caves/Basic_Cave/008_background.png"),
+				repeat-x;
+		}
+		.cave-background-2 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/005_background.png");
+		}
+		.cave-ceiling {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/001_ceiling.png");
+		}
+		.pillars-4 .p1 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/004_pillar_001.png");
+		}
+		.pillars-4 .p2 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/004_pillar_002.png");
+		}
+		.pillars-4 .p3 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/004_pillar_003.png");
+		}
+		.pillars-4 .p4 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/004_pillar_004.png");
+		}
+		.pillars-4 .p5 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/004_pillar_005.png");
+		}
+
+		.cave-stalactites-1 .s1 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/002_stalactite_001.png");
+		}
+		.cave-stalactites-1 .s2 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/002_stalactite_002.png");
+		}
+		.cave-stalactites-1 .s3 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/002_stalactite_003.png");
+		}
+		.cave-stalactites-1 .s4 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/002_stalactite_004.png");
+		}
+		.cave-stalactites-1 .s5 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/002_stalactite_005.png");
+		}
+		.cave-stalactites-1 .s6 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/002_stalactite_006.png");
+		}
+		.cave-stalactites-1 .s7 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/002_stalactite_007.png");
+		}
+		.cave-stalactites-1 .s8 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/002_stalactite_008.png");
+		}
+
+		.cave-stalactites-2 .big-s1 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/003_stalactite_001.png");
+		}
+		.cave-stalactites-2 .big-s2 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/003_stalactite_003.png");
+		}
+
+		.big-stalagmite {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/003_stalactite_002.png");
+		}
+		.cave-rocks-1 .r1 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/002_rock_001.png");
+		}
+		.cave-rocks-1 .r2 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/002_rock_002.png");
+		}
+		.cave-rocks-1 .r3 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/002_rock_003.png");
+		}
+		.cave-rocks-1 .r4 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/002_rock_004.png");
+		}
+		.cave-rocks-1 .r5 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/002_rock_005.png");
+		}
+		.cave-rocks-2 .r6 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/002_rock_006.png");
+		}
+		.cave-rocks-2 .r7 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/002_rock_007.png");
+		}
+		.cave-floor-1 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/001_floor.png");
+		}
+		.cave-floor-2 {
+			background-image: url("./commands/riddler/images/caves/Basic_Cave/002_floor.png");
+		}
+		.blackout {
+			background: #000;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+			/* animation: fadeaway 10s ease-in-out infinite; */
+			animation-iteration-count: 1;
+		}
+		@keyframes fadeaway {
+			from {
+				opacity: 1;
+			}
+			to {
+				opacity: 0;
+			}
+		}
+		@keyframes cave {
+			0% {
+				transform: scale(1);
+			}
+			100% {
+				transform: scale(10);
+			}
+		}
+
+		@keyframes bg1 {
+			0% {
+				transform: translate(0);
+				transform: scale(1);
+			}
+			100% {
+				transform: scale(10);
+				transform: translate(
+					-818px
+				); /* The image width */
+			}
+		}
+		@keyframes c1 {
+			0% {
+				transform: translate(0);
+			}
+			100% {
+				transform: scale(10);
+				transform: translate(
+					-1280px
+				); /* The image width */
+			}
+		}
+
+		@keyframes p1 {
+			0% {
+				transform: translate(0);
+			}
+			100% {
+				transform: scale(10);
+				transform: translate(-1636px);
+			}
+		}
+
+		@keyframes s1 {
+			0% {
+				transform: translate(0);
+			}
+			100% {
+				transform: scale(10);
+				transform: translate(-2636px);
+			}
+		}
+		@keyframes r1 {
+			0% {
+				transform: translate(0);
+			}
+			100% {
+				transform: scale(10);
+				transform: translate(-3000px);
+			}
+		}
+		@keyframes r2 {
+			0% {
+				transform: translate(0);
+			}
+			100% {
+				transform: scale(10);
+				transform: translate(-1120px);
+			}
+		}
+
+		.chalkboard {
+			width: 330px;
+			padding: 20px;
+			height: 250px;
+			background-color: rgb(1, 1, 1, 0.7);
+			border: 10px solid #404040;
+			position: absolute;
+			transform: translate(50%, -50%);
+		}
+
+		.fullscreen .chalkboard {
+			color: rgb(255, 255, 255, 1);
+			font-family: "Joan", serif;
+			font-size: 19px;
+			text-shadow: 0 0 2px rgb(194, 225, 252);
+			line-height: 1.7em;
+			font-weight: 400;
+		}
+	</style>
+	<div class="cave-container">
+		<div class="cave-background-1"></div>
+		<div class="cave-background-2"></div>
+		<div class="pillars-4">
+			<div class="p1"></div>
+			<div class="p2"></div>
+			<div class="p3"></div>
+			<div class="p4"></div>
+			<div class="p5"></div>
+		</div>
+
+		<div class="chalkboard">
+			<div class="screen"></div>
+		</div>
+
+		<div class="cave-stalactites-2">
+			<div class="big-s1"></div>
+			<div class="big-s2"></div>
+		</div>
+
+		<div class="cave-stalactites-1">
+			<div class="s1"></div>
+			<div class="s2"></div>
+			<div class="s3"></div>
+			<div class="s4"></div>
+			<div class="s5"></div>
+			<div class="s6"></div>
+			<div class="s7"></div>
+			<div class="s8"></div>
+		</div>
+
+		<div class="cave-ceiling"></div>
+
+		<div class="cave-floor-2"></div>
+
+		<div class="cave-rocks-1">
+			<div class="r1"></div>
+			<div class="r2"></div>
+			<div class="r3"></div>
+			<div class="r4"></div>
+			<div class="r5"></div>
+		</div>
+		<div class="cave-floor-1"></div>
+		<div class="stalagmite-container">
+			<div class="big-stalagmite"></div>
+		</div>
+		<div class="cave-rocks-2">
+			<div class="r6"></div>
+			<div class="r7"></div>
+		</div>
+
+		<div class="blackout"></div>
+	</div>
+</template>

@@ -34,8 +34,10 @@ var initializeAge = [
 	"Initializing algorithm for system of date reckoning.",
 	"...................................",
 	" ",
+	"Make sure your volume is turned up...",
+	"OK....",
 	"Ready for authorization procedure",
-	" ",
+	". . . .",
 	" "
 ];
 
