@@ -23,7 +23,7 @@ const output = [
 var result = "";
 async function riddler() {
 	clear();
-	hobbitMusic.play();
+	// hobbitMusic.play();
 	// var timer = setInterval(function () {
 	// 	hobbitMusic.volume = 0.5;
 	// 	clearInterval(timer);
@@ -32,7 +32,6 @@ async function riddler() {
 
 	return new Promise(async (resolve) => {
 		let mainScreen = await showTemplateScreen("cave");
-		await titleScreen();
 
 		await type([
 			"I am programmed to understand.",
@@ -61,6 +60,21 @@ async function riddleOne() {
 async function checkAnswer(answer1) {
 	console.log(answer1);
 }
+
+// // need timer to wait to fetch voices - bug?
+// var timer = setInterval(function () {
+// 	var voices = speechSynthesis.getVoices();
+// 	if (voices.length !== 0) {
+// 		//	console.log(voices);
+// 		var msg = new SpeechSynthesisUtterance("Hello old chap.");
+// 		msg.voice = voices[6];
+// 		msg.pitch = 0.4;
+// 		msg.rate = 0.6;
+// 		msg.volue = 0.4;
+// 		speechSynthesis.speak(msg);
+// 		clearInterval(timer);
+// 	}
+// }, 200);
 const templates = ["caves"];
 
 export default riddler;

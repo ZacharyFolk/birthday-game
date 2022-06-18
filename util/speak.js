@@ -1,21 +1,6 @@
 var synth = window.speechSynthesis;
 var voices = synth.getVoices();
 
-// // need timer to wait to fetch voices - bug?
-// var timer = setInterval(function () {
-// 	var voices = speechSynthesis.getVoices();
-// 	if (voices.length !== 0) {
-// 		//	console.log(voices);
-// 		var msg = new SpeechSynthesisUtterance("Hello old chap.");
-// 		msg.voice = voices[6];
-// 		msg.pitch = 0.4;
-// 		msg.rate = 0.6;
-// 		msg.volue = 0.4;
-// 		speechSynthesis.speak(msg);
-// 		clearInterval(timer);
-// 	}
-// }, 200);
-
 let volume = 0;
 
 function say(text, pitch = 1, rate = 1, volume = 0) {
