@@ -295,6 +295,7 @@ body.fullscreen #crt {
 }
 
 /*********** CONTROLS *************/
+
 button {
 	cursor: pointer;
 	outline: none;
@@ -438,6 +439,9 @@ button[data-theme="blue"] {
 	z-index: 999;
 }
 
+#sticky {
+	display: block;
+}
 .post-it {
 	transform: rotate(3deg);
 	line-height: 1;
@@ -596,4 +600,12 @@ span.age[contenteditable] {
 #input.age[contenteditable]:empty::before {
 	content: "Use format : 01/01/2001";
 	display: inline-block;
+}
+
+/* hide stuff */
+
+#sticky,
+#volume,
+#fullscreen {
+	display: none;
 }

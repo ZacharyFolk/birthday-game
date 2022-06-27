@@ -10,58 +10,58 @@ async function ageChecker() {
 	return new Promise(async (resolve) => {
 		let name = await prompt("What is your name?");
 
-		// await pause(2);
-		// say("Hello", 1, 1, 1);
-		// await type(["Processing.......", " "], {
-		// 	finalWait: 500
-		// });
-		// say(name, 0.01, 0.5, 1);
-		// await pause(1);
-		// clear();
+		await pause(2);
+		say("Hello", 1, 1, 1);
+		await type(["Processing.......", " "], {
+			finalWait: 500
+		});
+		say(name, 0.01, 0.5, 1);
+		await pause(1);
+		clear();
 
-		// if (name == "henry") {
-		// 	await type(
-		// 		[
-		// 			" ",
-		// 			" ",
-		// 			"Hello Henry!",
-		// 			"Have been expecting you..................",
-		// 			" ",
-		// 			" ",
-		// 			"Proceeding with next step of authentication",
-		// 			".............. ",
-		// 			" ",
-		// 			"Loading date evaluation procedure",
-		// 			"................",
-		// 			" ",
-		// 			" ",
-		// 			" "
-		// 		],
-		// 		{ lineWait: 250 }
-		// 	);
-		// } else {
-		// 	await type(
-		// 		[
-		// 			" ",
-		// 			" ",
-		// 			"Hello " + name,
-		// 			"You are not who I was expecting....",
-		// 			" ",
-		// 			,
-		// 			"Processing...........",
-		// 			" ",
-		// 			"Continuing with the date evaluation procedure",
-		// 			"................",
-		// 			" ",
-		// 			" ",
-		// 			" "
-		// 		],
-		// 		{ lineWait: 250 }
-		// 	);
-		// }
-		// clear();
+		if (name == "henry") {
+			await type(
+				[
+					" ",
+					" ",
+					"Hello Henry!",
+					"Have been expecting you..................",
+					" ",
+					" ",
+					"Proceeding with next step of authentication",
+					".............. ",
+					" ",
+					"Loading date evaluation procedure",
+					"................",
+					" ",
+					" ",
+					" "
+				],
+				{ lineWait: 250 }
+			);
+		} else {
+			await type(
+				[
+					" ",
+					" ",
+					"Hello " + name,
+					"You are not who I was expecting....",
+					" ",
+					,
+					"Processing...........",
+					" ",
+					"Continuing with the date evaluation procedure",
+					"................",
+					" ",
+					" ",
+					" "
+				],
+				{ lineWait: 250 }
+			);
+		}
+		clear();
 
-		// await pause(3);
+		await pause(3);
 
 		let age = await prompt("When is your birthday?", false, true);
 		let convertedAge = dates.convert(age);
@@ -82,60 +82,70 @@ async function ageChecker() {
 		let isHenry = name == "henry" && age == "06/27/2009";
 
 		isToday = true;
-		// await type(
-		// 	[
-		// 		"Initializing birth date authorization...",
-		// 		" ",
-		// 		"..............",
-		// 		" "
-		// 	],
-		// 	{ finalWait: 3000 }
-		// );
+		await type(
+			[
+				"Initializing birth date authorization...",
+				" ",
+				"..............",
+				" "
+			],
+			{ finalWait: 3000 }
+		);
 		clear();
 		if (isToday) {
-			// await type(
-			// 	[
-			// 		" ",
-			// 		" ",
-			// 		"Processing..............",
-			// 		" ",
-			// 		"You were born " +
-			// 			ms.toLocaleString("en-US") +
-			// 			" milliseconds ago.",
-			// 		" ",
-			// 		"How time flies",
-			// 		" ",
-			// 		hrs.toLocaleString("en-US") +
-			// 			" hours in the blink of a cursor.",
-			// 		" ",
-			// 		" "
-			// 	],
-			// 	{
-			// 		lineWait: 500,
-			// 		initialWait: 500,
-			// 		finalWait: 12000
-			// 	}
-			// );
-			// await type(["anyways..... "], { finalWait: 1000 });
-			// await pause(3);
-			// clear();
-			// tada();
-			// await alert("Happy Birthday!!");
-			// await pause(2);
-			// await type(
-			// 	[
-			// 		" ",
-			// 		" ",
-			// 		"This is very exciting",
-			// 		"This is what my programming is destined for",
-			// 		".....",
-			// 		" ",
-			// 		" "
-			// 	],
-			// 	{ finalWait: 5000 }
-			// );
+			await type(
+				[
+					" ",
+					" ",
+					"Processing..............",
+					" ",
+					"You were born " +
+						ms.toLocaleString("en-US") +
+						" milliseconds ago.",
+					" ",
+					"How time flies",
+					" ",
+					hrs.toLocaleString("en-US") +
+						" hours in the blink of a cursor.",
+					" ",
+					" "
+				],
+				{
+					lineWait: 500,
+					initialWait: 500,
+					finalWait: 12000
+				}
+			);
+			await type(["anyways..... "], { finalWait: 1000 });
+			await pause(3);
+			clear();
+			tada();
+			await alert("Happy Birthday!!");
+			await pause(2);
+			await type(
+				[
+					" ",
+					" ",
+					"This is very exciting",
+					"This is what my programming is destined for",
+					".....",
+					" ",
+					" "
+				],
+				{ finalWait: 5000 }
+			);
 
 			await hearSong(name);
+
+			await type(
+				[
+					"Everything seems in order",
+					".....",
+					"Let's continue with fun and presents!"
+				],
+				{ finalWait: 5000 }
+			);
+			resolve(true);
 		} else {
 			await type(
 				[
@@ -165,10 +175,10 @@ async function ageChecker() {
 			);
 			await pause(2);
 			clear();
-			resolve(isHenry);
+			//	resolve(isHenry);
 			return main();
 		}
-		resolve(isHenry);
+		resolve();
 	});
 }
 
@@ -179,21 +189,21 @@ async function hearSong(name) {
 async function checkAnswer(name, answer) {
 	return new Promise(async (resolve) => {
 		if (answer == "yes") {
-			// await type(
-			// 	[
-			// 		" ",
-			// 		" ",
-			// 		"Thank you.",
-			// 		"I have been exercising my sound chip just for this moment",
-			// 		".............",
-			// 		"......",
-			// 		"Ok, here goes nothing",
-			// 		" ",
-			// 		" ",
-			// 		" "
-			// 	],
-			// 	{ lineWait: 500, finalWait: 5000 }
-			// );
+			await type(
+				[
+					" ",
+					" ",
+					"Thank you.",
+					"I have been exercising my sound chip just for this moment",
+					".............",
+					"......",
+					"Ok, here goes nothing",
+					" ",
+					" ",
+					" "
+				],
+				{ lineWait: 500, finalWait: 5000 }
+			);
 			await singing(name);
 			resolve();
 		} else if (answer == "no") {

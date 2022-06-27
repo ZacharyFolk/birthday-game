@@ -6,7 +6,7 @@ import ageChecker from "../commands/bday/index.mjs";
 import partycow from "../commands/partycow/index.mjs";
 import command from "./../commands/cowsay/index.mjs";
 
-// import {result} from "./../commands/brogue/index.mjs"
+import { result } from "./../commands/phunter/index.mjs";
 import * as textblock from "./../textblocks/index.mjs";
 import cagematch from "../commands/cagematch/index.mjs";
 import riddlecave from "../commands/riddler/index.mjs";
@@ -17,45 +17,44 @@ const PW = "admin";
 async function boot() {
 	clear();
 
-	await parse("riddler");
+	await type(textblock.welcome1, {
+		wait: 20,
+		initialWait: 3000,
+		lineWait: 100,
+		finalWait: 3000
+	});
+	await pause(2);
+	await type(textblock.loading, { wait: 0, lineWait: 10 });
+	clear();
 
-	// await type(textblock.welcome1, {
-	// 	wait: 20,
-	// 	initialWait: 3000,
-	// 	lineWait: 100,
-	// 	finalWait: 3000
-	// });
-	// await pause(2);
-	// await type(textblock.loading, { wait: 0, lineWait: 10 });
-	// clear();
-
-	// await type(textblock.welcome2, {
-	// 	wait: 30,
-	// 	initialWait: 1000,
-	// 	lineWait: 500,
-	// 	finalWait: 500
-	// });
-	// clear();
-	// await type(textblock.authintro, {
-	// 	lineWait: 250,
-	// 	wait: 50,
-	// 	initialWait: 3000,
-	// 	finalWait: 4000
-	// });
-	// await pause(2);
-	// clear();
-	// await type(textblock.initializeAge, {
-	// 	wait: 30,
-	// 	lineWait: 150,
-	// 	finalWait: 2000
-	// });
-	// await pause(3);
+	await type(textblock.welcome2, {
+		wait: 30,
+		initialWait: 1000,
+		lineWait: 500,
+		finalWait: 500
+	});
+	clear();
+	await type(textblock.authintro, {
+		lineWait: 250,
+		wait: 50,
+		initialWait: 3000,
+		finalWait: 4000
+	});
+	await pause(2);
+	clear();
+	await type(textblock.initializeAge, {
+		wait: 30,
+		lineWait: 150,
+		finalWait: 2000
+	});
+	await pause(3);
 
 	let isH = await ageChecker();
 
 	if (isH) {
+		clear();
 		await type(textblock.itsHenry, {
-			finalWait: 1000,
+			finalWait: 3000,
 			lineWait: 400
 		});
 
@@ -64,28 +63,144 @@ async function boot() {
 
 		await parse("matrix");
 
-		await type(funcheck, { lineWait: 300, finalWait: 1000 });
+		await type(textblock.funcheck, {
+			lineWait: 300,
+			finalWait: 1000
+		});
 		clear();
 
-		// await type(textblock.partyCowIntro, { lineWait: 500 });
+		await type(textblock.partyCowIntro, {
+			lineWait: 500,
+			finalWait: 4000
+		});
 		clear();
 
-		//await type(textblock.partyCowIntro2, {
-		// 	lineWait: 300,
-		// 	finalWait: 4000
-		// });
+		await type(textblock.partyCowIntro2, {
+			lineWait: 500,
+			finalWait: 4000
+		});
 		clear();
-		// await partycow();
 
-		// await parse("cagematch");
-		// await parse("phunter");
-		// console.log(result);
-	} else {
-		clear();
+		await partycow();
 		await parse("phunter");
-	}
 
-	// await checkpoint_1();
+		if (result == "lose") {
+			await type(
+				[
+					"Oh no.",
+					"It appears Roy has ruined everything.",
+					"I was going to start the game again..",
+					"But there are so many more games for you..."
+				],
+				{ lineWait: 500, finalWait: 2000 }
+			);
+			clear();
+			await type(
+				[
+					"But first how about a real present break.",
+					"Here is a clue.. ",
+					"😼 + 🏠"
+				],
+				{ lineWait: 800, finalWait: 4000 }
+			);
+		} else {
+			await type(
+				[
+					"Woo hoo you did it!",
+					"Now go find a present in the real world.",
+					"Here is a clue.. ",
+					"😼 + 🏠"
+				],
+				{ lineWait: 800, finalWait: 4000 }
+			);
+		}
+
+		await type(
+			[
+				"Good luck finding it!",
+				"Press any key when you are ready to continue."
+			],
+			{ lineWait: 800, finalWait: 4000 }
+		);
+
+		await waitForKey();
+		clear();
+
+		await type(
+			[
+				"I hope you like that",
+				"400 games!! That should be some fun.",
+				"However none of them can compare to this next one.",
+				" ",
+				" ",
+				"Prepare yourself for CAGEMATCH!!!"
+			],
+			{ lineWait: 800, finalWait: 4000 }
+		);
+		clear();
+		await parse("cagematch");
+
+		await type(
+			[
+				"Unbelievable!",
+				"You have defeated another of these incredibly challenging puzzles",
+				"I guess that means you should get another present.",
+				" ",
+				"Don't get too excited...",
+				" ",
+				"... you know, it is the thought that counts",
+				"Here is your next clue...",
+				"Pretend you are looking for sweet treats.. "
+			],
+			{ lineWait: 1000, finalWait: 4000 }
+		);
+		clear();
+		await type(
+			[
+				"You know the drill...",
+				"Press anything when ready for the next part."
+			],
+			{ lineWait: 1000, finalWait: 4000 }
+		);
+
+		await parse("screensaver");
+		await waitForKey();
+
+		await type(
+			[
+				"Ok on to the next part.",
+				"Please make the most of this next title screen",
+				"Way too much time went into that...",
+				"so pretend that you think it is really cool!"
+			],
+			{ lineWait: 1000, finalWait: 4000 }
+		);
+		await parse("riddler");
+
+		await type(
+			[
+				"Ok one last thing.",
+				"A few words from virtual dad..."
+			],
+			{ lineWait: 1000, finalWait: 4000 }
+		);
+		await parse("dadtalk");
+
+		await parse("screensaver");
+
+		await main();
+	} else {
+		await type(
+			[
+				"Thank you for using the Teenomatron2022",
+				"You do not seem to be who this was designed for....",
+				"Returning to terminal.",
+				"You can type help at anytime to see what your options are."
+			],
+			{ lineWait: 1000, finalWait: 4000 }
+		);
+		clear();
+	}
 }
 
 async function checkpoint(num) {

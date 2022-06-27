@@ -1,0 +1,201 @@
+<template id="dadscreen">
+	<style>
+		.background {
+			background-image: url("./commands/dadtalk/images/henry-drawing002.gif");
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			background-repeat: no-repeat;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			animation: fadeIn 10s ease-in-out infinite;
+			animation-iteration-count: 1;
+			opacity: 1;
+		}
+		.me {
+			background-image: url("./commands/dadtalk/images/dad.gif");
+			height: 182px;
+			width: 100px;
+			position: absolute;
+			top: 250px;
+			left: 410px;
+			transform: scale(0.1);
+			animation: walkIn 9s ease-in-out forwards;
+			animation-delay: 8s;
+			animation-iteration-count: 1;
+			opacity: 0;
+		}
+		.star {
+			background-image: url("./commands/dadtalk/images/star.png");
+			height: 115px;
+			width: 100px;
+			position: absolute;
+			top: 280px;
+			left: -120px;
+			transform: scale(0.3);
+			animation: star 18s ease-in-out forwards;
+			animation-delay: 28s;
+			animation-iteration-count: 2;
+			opacity: 1;
+		}
+		.batman {
+			background-image: url("./commands/dadtalk/images/Batman.gif");
+			height: 90px;
+			width: 80px;
+			position: absolute;
+			top: 290px;
+			left: 120px;
+			transform: scale(0.1);
+			animation: batman 20s linear forwards;
+			animation-delay: 45s;
+			animation-iteration-count: 1;
+			opacity: 0;
+		}
+		.ghosts {
+			background-image: url("./commands/dadtalk/images/Ghost-Family.gif");
+			height: 82px;
+			width: 140px;
+			position: absolute;
+			top: 70px;
+			left: 400px;
+			transform: scale(0.7);
+			animation: ghosts 12s ease-in-out infinite;
+			animation-delay: 45s;
+			opacity: 0;
+		}
+		.textbox {
+			background: rgb(1, 1, 1, 0.4);
+			width: 100%;
+			position: absolute;
+			bottom: 100px;
+			left: 0;
+			height: 70px;
+			padding: 0 30px;
+			top: 0;
+			animation: textBoxfade 10s ease-in-out forwards;
+			animation-iteration-count: 1;
+		}
+		.keys {
+			background-image: url("./commands/dadtalk/images/keyfob.gif");
+			height: 300px;
+			width: 205px;
+			position: absolute;
+			top: 70px;
+			left: 400px;
+
+			opacity: 0;
+		}
+		.keyfob {
+			animation: keyfob 4s ease-in-out forwards;
+			animation-iteration-count: 1;
+		}
+
+		@keyframes keyfob {
+			0% {
+				transform: scale(0.4);
+				opacity: 0;
+			}
+			100% {
+				top: 110px;
+				left: 210px;
+				transform: scale(1.4);
+				opacity: 1;
+			}
+		}
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+		@keyframes walkIn {
+			0% {
+				top: 250px;
+				left: 410px;
+				transform: scale(0.1);
+				opacity: 0;
+			}
+			2% {
+				opacity: 1;
+			}
+
+			100% {
+				top: 320px;
+				left: 430px;
+				transform: scale(1.3);
+				opacity: 1;
+			}
+		}
+
+		@keyframes textBoxfade {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
+		}
+		@keyframes star {
+			0% {
+				top: 280px;
+				left: -120px;
+				transform: scale(0.3);
+			}
+			40%,
+			100% {
+				top: -110px;
+				left: 570px;
+				transform: scale(0.8);
+			}
+		}
+		@keyframes batman {
+			0% {
+				opacity: 0.5;
+				transform: scale(0.1);
+			}
+			40% {
+				opacity: 1;
+				transform: scale(0.9);
+			}
+			80% {
+				transform: scale(0.7);
+			}
+
+			100% {
+				transform: scale(1);
+				opacity: 1;
+			}
+		}
+		@keyframes ghosts {
+			0% {
+				top: 80px;
+				left: 400px;
+				opacity: 0.4;
+			}
+			50% {
+				opacity: 0.7;
+				top: 40px;
+				left: 400px;
+			}
+
+			80%,
+			100% {
+				left: 400px;
+				top: 80px;
+				opacity: 0.4;
+			}
+		}
+	</style>
+	<div class="star"></div>
+	<div class="batman"></div>
+	<div class="ghosts"></div>
+	<div class="background"></div>
+	<div class="me"></div>
+
+	<div class="textbox"></div>
+	<div class="keys"></div>
+</template>

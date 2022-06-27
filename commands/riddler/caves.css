@@ -4,7 +4,10 @@
 	justify-content: space-around;
 	background-color: #000;
 	transform: scale(1.1);
-	/* animation: cave 1420s linear infinite; */
+}
+
+.zoom {
+	animation: cave 120s linear infinite;
 }
 .cave-container {
 	overflow: hidden;
@@ -267,7 +270,7 @@
 	width: 100%;
 	height: 100%;
 	opacity: 0;
-	/* animation: fadeaway 35s ease-in-out infinite; */
+	animation: fadeaway 35s ease-in-out infinite;
 	animation-iteration-count: 1;
 }
 
@@ -305,10 +308,15 @@
 }
 
 .textbox {
-	background: rgb(1, 1, 1, 0.8);
+	background: rgb(1, 1, 1, 0.4);
 	position: absolute;
 	bottom: 0;
 	width: 100%;
+	height: 80px;
+	/* animation: typebox 5s ease-in-out infinite; */
+	animation-iteration-count: 1;
+	padding: 10px 20px 10px 40px;
+	color: #fff;
 }
 .eyes {
 	background-image: url("./images/blinkyeyes.gif");
@@ -347,6 +355,18 @@
 	animation-name: smoky-mirror;
 }
 
+.vid-screen {
+	position: absolute;
+	top: 90px;
+	left: 47px;
+	z-index: 9999;
+}
+.show-it {
+	display: block;
+}
+.hide-it {
+	display: none;
+}
 /* *************
 *              *
 *    IMAGES    *
@@ -513,7 +533,7 @@
 		transform: scale(1);
 	}
 	100% {
-		transform: scale(10);
+		transform: scale(20);
 	}
 }
 
@@ -582,7 +602,14 @@
 		transform: translate(-1120px);
 	}
 }
-
+@keyframes typebox {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
 @keyframes gollum {
 	0%,
 	10% {

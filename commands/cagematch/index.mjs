@@ -28,7 +28,7 @@ async function cagematch() {
 
 	return new Promise(async (resolve) => {
 		// LOGO
-		let logoScreen = await showTemplateScreen("logo");
+		let logoScreen = await showTemplateScreen("cage_intro");
 		pause(2);
 		await pause(6.8);
 		say("CAGE MATCH!!", 1, 3, 3);

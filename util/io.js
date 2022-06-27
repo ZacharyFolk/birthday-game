@@ -85,7 +85,6 @@ async function type(
 	container = document.querySelector(".terminal")
 ) {
 	if (!text) return Promise.resolve();
-
 	let {
 		wait = 30,
 		initialWait = 1000,
@@ -222,7 +221,7 @@ function moveCaretToEnd(el) {
 }
 
 /** Shows an input field, returns a resolved promise with the typed text on <enter> */
-async function input(pw, cal) {
+async function input(pw, cal, target) {
 	return new Promise((resolve) => {
 		// This handles all user input
 		const onKeyDown = (event) => {
@@ -301,6 +300,10 @@ async function input(pw, cal) {
 
 		// Add input to terminal
 		let terminal = document.querySelector(".terminal");
+		if (target) {
+			terminal = target;
+		}
+
 		let input = document.createElement("span");
 		input.setAttribute("id", "input");
 		if (pw) {
@@ -383,9 +386,14 @@ function scroll(el = document.querySelector(".terminal")) {
 }
 
 /** Types the given text and asks input */
-async function prompt(text, pw = false, cal = false) {
-	await type(text);
-	return input(pw, cal);
+async function prompt(text, pw = false, cal = false, target) {
+	if (target) {
+		await type(text, {}, target);
+		return input(pw, cal, target);
+	} else {
+		await type(text);
+		return input(pw, cal);
+	}
 }
 
 /** Sets a global event listeners and returns when a key is hit */

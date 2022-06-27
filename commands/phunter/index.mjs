@@ -1,10 +1,14 @@
-
-import { getScreen, showTemplateScreen, addTemplate, clear } from "../../util/screens.js";
+import {
+	getScreen,
+	showTemplateScreen,
+	addTemplate,
+	clear
+} from "../../util/screens.js";
 import { type, waitForKey } from "../../util/io.js";
 import say from "../../util/speak.js";
 import alert from "../../util/alert.js";
 import pause from "../../util/pause.js";
-import Game from './game.mjs';
+import Game from "./game.mjs";
 const eightbitsurf = new Audio("./sound/8-bit-surf.mp3");
 const losesong = new Audio("./sound/jingle-lose.wav");
 const output = [
@@ -21,12 +25,12 @@ const output = [
 	"   "
 ];
 
-var result = '';
+var result = "";
 async function phunter() {
 	clear();
 	say("PRESENT HUNTER", 0.5, 0.8);
 	eightbitsurf.play();
-	return new Promise(async resolve => {
+	return new Promise(async (resolve) => {
 		// LOGO
 		let logoScreen = await showTemplateScreen("logo");
 		pause(2);
@@ -34,12 +38,10 @@ async function phunter() {
 		await waitForKey();
 		logoScreen.remove();
 
-		// // INTRO
 		let introScreen = await showTemplateScreen("intro");
 		await waitForKey();
 		introScreen.remove();
 
-		
 		// Main game screen
 		let gameScreen = getScreen("rogue");
 
@@ -49,7 +51,7 @@ async function phunter() {
 		gameScreen.appendChild(output);
 
 		addTemplate("layout", gameScreen);
-		
+
 		let body = getComputedStyle(document.body);
 		let settings = {
 			container: document.querySelector(".layout .mid"),
@@ -62,17 +64,18 @@ async function phunter() {
 			forceSquareRatio: true, // display is buggy without this?
 			onLose: () => {
 				gameScreen.remove();
-				result = 'lose';
+				result = "lose";
 				losesong.play();
 				resolve();
 			},
 			onWin: () => {
 				gameScreen.remove();
-				result = 'win';
+				result = "win";
 				resolve();
 			},
 			onQuit: () => {
 				gameScreen.remove();
+				result = "lose";
 				resolve();
 			},
 			onMessage: async (txt) => {
@@ -90,7 +93,6 @@ async function phunter() {
 		new Game(settings);
 
 		eightbitsurf.pause();
-
 	});
 }
 
